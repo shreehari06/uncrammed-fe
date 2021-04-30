@@ -1,38 +1,155 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar--container{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  top: 0;
+  width: 100%;
+  position:sticky;
+  z-index: 10;
+  background:white;
+  transition:all .2s ease-out;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar--container__blue{
+  background: linear-gradient(225deg, #007FE7 0%, rgba(13, 24, 33, 0.63) 100%),
+  linear-gradient(0deg, #007FE7, #007FE7);
+  color: white !important;
+  
 }
+.navbar--container__transparent{
+  background:transparent;
+}
+.navbar--container__transparent{
+  background:transparent;
+}
+.navbar-logo--container{
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height:3rem !important;
+  transform:translate(1.8rem,1rem);
+}
+.navbar-logo-img{
+  width: 100%;
+}
+.navbar--nav-container ul{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding:1rem;
+  
+
+}
+.navbar--nav-items{
+  font-size:2.4rem;
+  color:inherit;
+  font-family: Poppins, sans-serif;
+  padding: 1.5rem;
+  position: relative;
+  transition: all .3s ease-out;
+}
+.navbar--nav-items:hover{
+  transform:translateY(-.2rem);
+}
+.hero--container{
   display: flex;
   flex-direction: column;
+  justify-content: space-around; 
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: calc( 100vh - 8.8rem );
+}
+.hero--subHeading{
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 3.6rem;
+  text-align: center;
+  color: #007FE7;
+
+}
+.hero--heading{
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 7.2rem;
+  line-height: 10.8rem;
+  color: #0D7CD7;
+  text-align: center;
+
+}
+.hero--cta-container{
+  
 }
 
-.App-link {
-  color: #61dafb;
+.hero--cta-container a{
+  text-decoration: none;
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 3.6rem;
+  color:#007FE7;
+  transition: all .3s ease-out;
+  border:2px solid transparent;
 }
+.hero--cta-container a:hover{
+  border-bottom: 2px solid #007FE7;
+}
+.hero--cta-container a:first-child{
+  margin-right: 7rem;
+}
+.features--container{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: linear-gradient(225deg, #007FE7 0%, rgba(13, 24, 33, 0.63) 100%),
+linear-gradient(0deg, #007FE7, #007FE7);
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  height:100vh;
+  border: 2px solid black;
+}
+.features--heading{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 7.2rem;
+  text-align: center;
+  color: #FFFFFF;
+}
+.features--cards{
+  display:flex;
+  justify-content:space-evenly;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+}
+.features--cta-container{
+  transform: translateY(2rem);
+  margin: 0 auto;
+  width: max-content;
+}
+.features--cta-container a{
+  text-decoration: none;
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 3.6rem;
+  color:white;
+  transition: all .3s ease-out;
+  border:2px solid transparent;
+  
+}
+.features--cta-container a:hover{
+  border-bottom: 2px solid white;
+}
+.contact--container{
+  font-family: Poppins, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 7.2rem;
+  line-height: 10.8rem;
+  color: #0D7CD7;
+  text-align: center;
+  height: 100vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
