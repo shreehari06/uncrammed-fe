@@ -7,32 +7,65 @@ import crowdIcon from './assets/icon-crowd.svg'
 import './App.css';
 import './shared.css';
 import Card from './Card'
-import React, {useLayoutEffect, useState} from 'react';
+import InputText from './InputText'
+import React, {useLayoutEffect, useState,useRef, useEffect} from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 function App() {
-  let nav = React.createRef();
-  let hero = React.createRef();
+  //API SETUP
+  const apiURL = 'http://localhost:9000';
+  
+  let hero = useRef();
+  let nav = useRef({classList : ""});
   let [navTextColor, setNavTextColor] = useState('#007FE7');
   let scrollHandler = () =>{
     let offset = window.scrollY;
-    console.log(offset);
     if(offset <700){
       nav.current.classList.remove('navbar--container__transparent');
-      console.log('removing');
       setNavTextColor('#007FE7');
-    } else if (offset >=700 && offset <1365) {
+    } 
+    else if (offset >=700 && offset <1365) {
       nav.current.classList.add('navbar--container__transparent');
       setNavTextColor('white');
-  
     } 
     else if (offset >= 1365){
       setNavTextColor('#007FE7');
-        nav.current.classList.remove('navbar--container__transparent');
+      nav.current.classList.remove('navbar--container__transparent');
     }
   }
   useLayoutEffect(()=>{
     window.addEventListener('scroll',scrollHandler);
     return () => window.removeEventListener('scroll',scrollHandler)
   })
+  const formSubmitHandler = (event) =>{
+    event.preventDefault();
+    if (!event.target[0].value || !event.target[1].value || !event.target[2].value) {
+      alert("Please fill form correctly");
+      return;
+    }
+    const data = {
+      "name" : event.target[0].value,
+      "email" : event.target[1].value,
+      "msg" : event.target[2].value,
+    }
+    const requestOptions = {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json' ,
+        'Accept': 'application/json'
+      },
+      body: data
+    };
+    alert("Sent the message");
+    fetch(apiURL + "/submit",requestOptions)
+        .then(response => console.log(response));
+    window.location.reload();
+  }
   return (
     <div className="App">
       <div className="navbar--container" ref={nav}>
@@ -43,7 +76,7 @@ function App() {
             <ul>
               <li className = 'navbar--nav-items hover-underline'><a href='#'>login</a></li>
               <li className = 'navbar--nav-items'><a href='#'>signup</a></li>
-              <li className = 'navbar--nav-items'><a href='#'>contact us</a></li>
+              <li className = 'navbar--nav-items'><a href='#contact'>contact us</a></li>
             </ul>
           </nav>
       </div>
@@ -52,7 +85,7 @@ function App() {
         <h2 className="hero--heading">Experience the new normal.</h2>
         <div className="hero--cta-container">
           <a href="#features">Learn More?</a>
-          <a href="#">Get Started></a>
+          <a href="#">Get Started`{'>'}`</a>
         </div>
       </div>
       <div className="features--container" id='features'>
@@ -66,11 +99,23 @@ function App() {
           <Card imgSrc={crowdIcon}>Crowd managing features coming soon!</Card>
         </div>
         <div className="features--cta-container">
-          <a href="">Intrigued Yet?</a>
+          <a href="#">Intrigued Yet?</a>
         </div>
       </div>
       <div className="contact--container">
-        Still want to know more?
+        <div className="contact--heading" id = "contact">
+          Still want to know more?
+          <div className="contact--subheading">
+        We’ve gotchu fam, hit us up!
+        </div>
+        </div>
+        
+        <form action="" class='contact--form' onSubmit ={formSubmitHandler}>
+          <InputText label='Name' placeholder='Eg. Joe Smith' color='blue' id='cta-name'/>
+          <InputText label='Email' placeholder='Eg. joe.smith@uncrammed.com' color='blue' id='cta-email'/>
+          <InputText label='Your Message' placeholder='Type your message here' color='blue' id='cta-msg'/>
+          <input type='submit'  className="contact--cta-link" value='Send It' />
+        </form>
       </div>
     </div>
   );
